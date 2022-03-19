@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //游戏结束按下R键还原
+        //ゲーム終了 Rボタンでリスタート
         if (isGameOver)
         {
             if (Input.GetKeyDown(KeyCode.R))
