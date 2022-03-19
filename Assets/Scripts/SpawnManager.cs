@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //环境初始化和调用协程函数
+        //環境の初期化と同時実行関数の呼び出し
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         Physics.gravity *= gravity;
@@ -32,17 +32,17 @@ public class SpawnManager : MonoBehaviour
         waveCount.text = "WAVE:" + wave;
     }
     IEnumerator Timer()
-    {//根据wave数加快小球生成
+    {//wave数によるボール生成の高速化
         Debug.Log("Wave: " + wave);
         yield return new WaitForSeconds(30);
         if (!gameManager.isGameOver)
         {
 
             wave++;
-            waveSpeed /= wave;
-            gameManager.enemyAni.speed *= wave;
+            waveSpeed /= 1+wave/2;
+            gameManager.enemyAni.speed *= 1+wave/2;
             
-            if (wave > 2)
+            if (wave > 3)
             {
                 StartCoroutine(SpawnTargets(0));
             }
@@ -55,11 +55,11 @@ public class SpawnManager : MonoBehaviour
     }
     IEnumerator SpawnTargets(int n)
     {
-        //小球生成间隔
+        //ボール生成間隔
         yield return new WaitForSeconds(waveSpeed);
         if (!gameManager.isGameOver)
         {
-            //每十五个小球生成一个powerup
+            //ボール15個ごとにパワーアップを発生させる
             n++;
             if (n > 15)
             {
@@ -72,7 +72,7 @@ public class SpawnManager : MonoBehaviour
                 Instantiate(targets[targetsIndex], this.transform);
             }
         }
-        if (wave > 2) { StartCoroutine(SpawnTargets(n)); }
+        if (wave > 3) { StartCoroutine(SpawnTargets(n)); }
         
 
         /*GameObject pooledProjectile = GetPooledObject();

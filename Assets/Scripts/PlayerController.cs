@@ -35,12 +35,7 @@ public class PlayerController : MonoBehaviour
 
         }
         
-        /* horizontalInput = Input.GetAxis("Horizontal");
-         verticalInput = Input.GetAxis("Vertical");
-         // playerRb.AddRelativeForce(Vector3.forward * verticalInput * speed,ForceMode.Impulse);
-         //playerRb.AddRelativeForce(Vector3.right * horizontalInput * speed, ForceMode.Impulse);
-         transform.Translate(Vector3.forward * verticalInput * speed * Time.deltaTime);
-         transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);*/
+        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -57,6 +52,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(15);
         isPowerUp = false;
         gameObject.transform.localScale = new Vector3(2, 2, 2);
+        
     }
     
 }
